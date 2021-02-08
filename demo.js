@@ -1,17 +1,23 @@
 'use strict'; 
 (function() {
 
-  function Person(firstName, lastName, age) {
-    this.firstName = firstName
-    this.lastName = lastName
-    this.age = age
-    this.isAdult = function() { return this.age > 21 }
+  // object literal
+  let person1 = {
+    firstName: 'Jim',
+    lastName: 'Cooper',
+    age: 29
   }
 
-  let person = new Person('Jim', 'Cooper', 29)
-  display(person)
+  // object.create, identical to above, more verbose
+  let person2 = Object.create(
+    Object.prototype,
+    {
+      firstName: { value: 'Jim', enumerable: true, writable: true, configurable: true },
+      lastName: { value: 'Cooper', enumerable: true, writable: true, configurable: true },
+      age: { value: 29, enumerable: true, writable: true, configurable: true}
+    }
+  )
 
-  let person2 = new Person('Billy', 'Batson', 17)
-  display(person2.isAdult())
+  display(person1, person2)
 
 })();
