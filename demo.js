@@ -7,9 +7,19 @@
       this.lastName = lastName
       this.age = age
     }
+    get fullName() {
+      return `${this.firstName} ${this.lastName}`
+    }
+    set fullName(fullName) {
+      let nameParts = fullName.split(' ')
+      this.firstName = nameParts[0]
+      this.lastName = nameParts[1]
+    }
   }
 
   let jim = new Person('Jim', 'Cooper', 29)
+  jim.fullName = 'Fred Jones'
   display(jim)
+  display(jim.fullName)
 
 })();
