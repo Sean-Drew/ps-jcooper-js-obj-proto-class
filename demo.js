@@ -1,15 +1,14 @@
 'use strict'; 
 (function() {
 
-  let person = {
-    firstName: 'Alex',
-    lastName: 'Johnson',
-    age: 28,
-    isAdult: function() { return person.age >= 18 }
+  function registerUser(firstName, lastName) {
+    let person = {
+      firstName,
+      lastName
+    }
+    display(person)
   }
 
-  display(`${person.firstName} ${person.lastName}`);
-  display(person.age)
-  display(person.isAdult())
+  registerUser('Jim', 'Halpert')
 
 })();
