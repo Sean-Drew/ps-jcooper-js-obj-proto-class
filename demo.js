@@ -32,19 +32,21 @@
   // ==================================================
 
   function findAlerts(logData) {
-    let regex = /ERROR.*?:/g; // no spaces between the //, the g at the end is the global code
-    
-    return regex.exec(logData) // exec finds first one and stops trying. to find more, need global code
+    let regex = /ERROR(.*?):(.*?);/g; // no spaces between the //, the g at the end is the global code
+
+    let result = regex.exec(logData)
+    // have the regex loop through errors until the value is null (no more errors found)
+    while (result !== null) {
+      display(result[1])
+      display(result[2])
+      display('--------------------')
+      result = regex.exec(logData)
+    }
+
+    return regex.exec(logData)
   }
 
-  let logData = 'INFO:OK;ERROR(HIGH):Something broke;ERROR(LOW):Something fishy;'
-  let result = findAlerts(logData)
-  display(result)
-  display('---')
-  display(result[0])
-  display('---')
-  display(result.index)
-  display('---')
-  display(result.input)
+  let logData = 'INFO:OK;ERROR(HIGH):Something broke;ERROR(LOW):Something fishy;ERROR(HIGH): so many errors;'
+  findAlerts(logData)
 
 })();
